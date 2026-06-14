@@ -1,1 +1,7 @@
+1. Walk into ntdll to find the Syscall Number (SSN) of NtReadVirtualMemory
+2. EAC Might hook that syscall, syscalls are ordered (meanings it start by 0x01, 0x02, ect...) so we can use a very known technic, we can check the syscall number under it and with that we can "predict" the SSN that we want
+3. Once we have that SSN, we can do that direct syscall 
+4. we loop until we have the full dump in a buffer
 
+OPTIONAL :
+1. We can fix IAT, RELOC, PE HEADER, SECTIONS , but they are not required to just analyse
