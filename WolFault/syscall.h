@@ -8,7 +8,7 @@ namespace scemaster {
 	class sysc {
 
 		[[noinline]] DWORD GetSSN() {
-			HANDLE file = CreateFileW(L"", FILE_SHARE_READ, 0, 0, OPEN_EXISTING, FILE_ATTRIBUTE_READONLY, 0); /* we need to fill the wide string argument to correctly open ntdll*/
+			HANDLE file = CreateFileW(L"C:\\Windows\\System32\\ntdll.dll", FILE_SHARE_READ, 0, 0, OPEN_EXISTING, FILE_ATTRIBUTE_READONLY, 0); /* we need to fill the wide string argument to correctly open ntdll*/
 			HANDLE MapA = CreateFileMappingA(file, PAGE_EXECUTE_READWRITE, 0, 0, 0);
 
 			LPVOID MapAddr = MapViewOfFile(MapA, NULL, FILE_MAP_ALL_ACCESS, 0, 0); /* [in] dwNumberOfBytesToMap. watchout for this argument i didn't understand it well (last argument)*/
