@@ -29,7 +29,7 @@ namespace scemaster {
 			DWORD* AddressOfNames = (DWORD*)((BYTE*)MapAddr + EAT_LinearAddr->AddressOfNames);
 
 
-			for (DWORD i = 0; EAT_LinearAddr->NumberOfFunctions; i++) {
+			for (DWORD i = 0; i <= EAT_LinearAddr->NumberOfFunctions; i++) {
 				char* name = (char*)((BYTE*)MapAddr + AddressOfNames[i]); // base + dereferenced Name address
 
 				if (strcmp(name, "NtReadVirtualMemory") == 0) {
