@@ -6,9 +6,10 @@
 namespace scemaster {
 
 	class sysc {
+	public:
 
 		[[noinline]] DWORD GetSSN() {
-			HANDLE file = CreateFileW(L"C:\\Windows\\System32\\ntdll.dll", FILE_SHARE_READ, 0, 0, OPEN_EXISTING, FILE_ATTRIBUTE_READONLY, 0); /* we need to fill the wide string argument to correctly open ntdll*/
+			HANDLE file = CreateFileW(L"", FILE_SHARE_READ, 0, 0, OPEN_EXISTING, FILE_ATTRIBUTE_READONLY, 0); /* we need to fill the wide string argument to correctly open ntdll*/
 			HANDLE MapA = CreateFileMappingA(file, PAGE_EXECUTE_READWRITE, 0, 0, 0);
 
 			LPVOID MapAddr = MapViewOfFile(MapA, NULL, FILE_MAP_ALL_ACCESS, 0, 0); /* [in] dwNumberOfBytesToMap. watchout for this argument i didn't understand it well (last argument)*/
@@ -46,8 +47,19 @@ namespace scemaster {
 
 		} 
 
-		[[noinline]] bool InlineSyscall(DWORD ssn) { /* for tommorow */
+		[[noinline]] NTSTATUS NtReadVirtualMemory(_In_ HANDLE ProcessHandle, _In_opt_ PVOID BaseAddress, _Out_ PVOID Buffer, _In_ SIZE_T NumberOfBytesToRead, _Out_opt_ PSIZE_T NumberOfBytesRead)
+		{
+			static DWORD ssn = GetSSN(); /* static keyword to only call it one time per NtReadVirtualMemory call, after value is cached, avoiding to have to copy the file AGAIN AND AGAIN */
+			NTSTATUS syscallStatus;
 
+			__asm  {	
+				mov r10, rcx /* save ret IP(rcx) into r10 (cpu will "flush" rcx)*/
+				mov eax, ssn /* we move our ssn into eax (syscall will fetch from here)*/
+				syscall /* syscall with our SSN */
+				mov syscallStatus, eax /* get what syscall returned from eax into syscallStatus */
+			}
+
+			return syscallStatus
 		}
 
 
