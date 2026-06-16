@@ -36,7 +36,7 @@ namespace scemaster {
 					WORD ordinal = AddressOfNameOrdinal[i];
 					DWORD funcN = AddressofFunc[ordinal];
 					BYTE* stubptr = ((BYTE*)MapAddr + funcN); /* base + FuncN offset*/
-					DWORD ssn = *(DWORD*)(stubptr + 4);  /* stub ptr + 4 to skip the opcode and we fetch 4 Bytes from the stubptr address to get the SSN*/
+					DWORD ssn = *(DWORD*)(stubptr + 1);  /* stub ptr + 1 to skip the opcode and we fetch 4 Bytes from the stubptr address to get the SSN*/
 
 					return (DWORD)ssn;
 
