@@ -70,7 +70,7 @@ namespace scemaster {
 			if (!buf) return nullptr;
 
 			SIZE_T bytesRead = 0;
-			NTSTATUS status = NtReadVirtualMemory(ssn, hProcess, baseAddr, buf, size, &bytesRead);
+			NTSTATUS status = NtReadVirtualMemory(hProcess, baseAddr, buf, size, &bytesRead);
 
 			if (status != 0) {
 				HeapFree(GetProcessHeap(), 0, buf);
