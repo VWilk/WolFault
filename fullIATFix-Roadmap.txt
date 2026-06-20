@@ -1,0 +1,35 @@
+So steps are, get into ped ldr, for loop through all modules and save their base + size
+
+then for loop each module and get their base + data[IMAGE_EXPORT_DIRECTORY].VirtualAddress 
+
+to create a linear address
+
+then we loop through all the modules address to find the corresponding address (to find the module) then we use the module we found + the address to find his name 
+
+then we want to find the module name
+
+then we simulate IMAGE_IMPORT_DESCRIPTOR by using a vector that we pushback our import module name and the import associated to him
+
+then we declare the real IMAGE_IMPORT_DESCRIPTOR structure in our variable with the number of modules + 1 (for null terminator)
+
+then we use our array size  + 1 for null termination 
+we put dll name (string) in there
+
+then we for loop to
+then we index our buffer to put "thunk pointers" that points to IMAGE_IMPORT_BY_NAME strucutres 
+
+then we declare another array (or use our current one) ??
+
+that match IAT structure , we point our resolved address (what returned IMAGE_IMPORT_BY_NAME)
+
+then we "fix" IMAGE_IMPORT_DESCRIPTOR by filling our module data
+
+.Name
+.OriginalFirstThunk
+.FirstThunk
+
+then we modify  IMAGE_DIRECTORY_ENTRY_IMPORT entry.VirtualAddress to the rva of our descriptor array
+
+and the size of our descritor array
+
+note : i have a bad english
