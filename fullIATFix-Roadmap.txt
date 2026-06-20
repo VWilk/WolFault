@@ -20,7 +20,7 @@ then we index our buffer to put "thunk pointers" that points to IMAGE_IMPORT_BY_
 
 then we declare another array 
 
-that match IAT structure , we point our resolved address (what returned IMAGE_IMPORT_BY_NAME)
+that match IAT structure , we point our resolved address (need to match Import Lookup table so we may fetch resolved address from here)
 
 then we "fix" IMAGE_IMPORT_DESCRIPTOR by filling our module data
 
