@@ -18,7 +18,7 @@ we put dll name (string) in there
 then we for loop to
 then we index our buffer to put "thunk pointers" that points to IMAGE_IMPORT_BY_NAME strucutres 
 
-then we declare another array (or use our current one) ??
+then we declare another array 
 
 that match IAT structure , we point our resolved address (what returned IMAGE_IMPORT_BY_NAME)
 
