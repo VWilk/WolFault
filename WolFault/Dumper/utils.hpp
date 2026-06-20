@@ -2,7 +2,7 @@
 
 #include <windows.h>
 #include <tlhelp32.h>
-#include <C:\Users\lolo3\source\repos\main\syscall.h>
+ // #include <C:\Users\lolo3\source\repos\main\syscall.h> CHANGE THAT SHIT :sob:
 #include <ntdef.h>
 
 
