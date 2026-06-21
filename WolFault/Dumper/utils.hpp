@@ -50,7 +50,7 @@ namespace utilsMaster {
 					memmove((PVOID)((BYTE*)Buffer + (DWORD)nt->OptionalHeader.SizeOfHeaders), (BYTE*)Buffer + sections[i].VirtualAddress, sections[i].SizeOfRawData); /* replaced memcpy to memmove for safety reasons*/
 
 					/* each iteration we align to the entry of the next section by adding size of  headers, then we increment sizeofheaders by size of raw data*/
-					sections[i].PointerToRawData = nt->OptionalHeader.SizeOfHeaders;
+				//	sections[i].PointerToRawData = nt->OptionalHeader.SizeOfHeaders;
 					nt->OptionalHeader.SizeOfHeaders += sections[i].SizeOfRawData;
 
 				}
